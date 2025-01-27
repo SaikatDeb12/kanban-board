@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.scss";
-import Board from "./Components/Board";
-import "./Components/Board.scss";
+import Board from "./Components/Board/Board";
+import "./Components/Board/Board.scss";
 
 function App() {
   return (

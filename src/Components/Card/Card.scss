@@ -1,0 +1,23 @@
+.card-top {
+  display: flex;
+  gap: 5px;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.card-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex: 1;
+}
+
+.options {
+  opacity: 0;
+}
+
+.card-label:hover .options {
+  transition: 200ms;
+  opacity: 1;
+}
