@@ -1,5 +1,6 @@
 .board {
-  min-width: 250px;
+  height: 100%;
+  min-width: 280px;
   border-radius: 5px;
 }
 
@@ -9,8 +10,13 @@
 }
 
 .board-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 720px;
   background-color: rgb(238, 240, 241);
   border-radius: 5px;
   margin: 5px;
   padding: 10px;
+  overflow-x: auto;
 }

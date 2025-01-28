@@ -16,18 +16,23 @@
   opacity: 0;
 }
 
-.card-label:hover .options {
+.card:hover .options {
   transition: 200ms;
   opacity: 1;
 }
 
 .card-title {
   font-weight: 600;
-  padding: 5px;
+  padding: 5px 0;
 }
 
 .card-footer {
   display: flex;
   justify-content: space-between;
-  padding: 5px;
+  padding: 5px 0;
+}
+
+.card-footer p {
+  display: flex;
+  align-items: center;
 }

@@ -9,8 +9,10 @@ function App() {
       <div className="app-navbar">
         <h2>kanban</h2>
       </div>
-      <div className="app-outer">
-        <div className="app-boards">
+      <div className="app-outer ">
+        <div className="app-boards custom-scroll">
+          <Board />
+          <Board />
           <Board />
           <Board />
           <Board />

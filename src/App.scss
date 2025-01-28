@@ -4,6 +4,19 @@
   box-sizing: border-box;
 }
 
+.custom-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: transparent;
+}
+
+.board-card:hover.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+}
+
 .app {
   height: 100vh;
   width: 100%;
@@ -17,11 +30,15 @@
 .app-outer {
   width: 100%;
   padding: 10px;
+  overflow-x: auto;
 }
 
 .app-boards {
   display: flex;
+  height: 100%;
   width: fit-content;
-  overflow-x: auto;
-  gap: 50px;
+  max-width: 100vw;
+  padding: 10px;
+  padding-bottom: 0;
+  gap: 20px;
 }
