@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Board.scss";
 import "../../App.scss";
 import { SlOptions } from "react-icons/sl";
 import Card from "../Card/Card";
 import Editable from "../Editable/Editable";
+import Dropdown from "../Dropdown/Dropdown";
 
 const Board = () => {
+  const [dropdown, showdropdowm] = useState(false);
   return (
     <div className="board">
       <div className="board-top">
         <p className="board-top-title">To Do</p>
-        <SlOptions />
+        <SlOptions
+          className="board-options"
+          onClick={() => showdropdowm(!dropdown)}
+        />
+        <Dropdown
+          className="board-dropdown"
+          onClose={() => showdropdowm(false)}
+        >
+          {dropdown ? "" : "Delete board"}
+        </Dropdown>
       </div>
       <div className="board-card custom-scroll">
         <Card />
