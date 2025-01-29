@@ -16,6 +16,7 @@ const Editable = ({ text, placeholder }) => {
       {showEdit ? (
         <form className="editable-text" onSubmit={handleSubmit(display)}>
           <input
+            className="editable-text-input"
             autoFocus
             type="text"
             placeholder={placeholder}

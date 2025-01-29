@@ -10,10 +10,12 @@
   justify-content: space-between;
   gap: 10px;
   flex: 1;
+  position: relative;
 }
 
 .options {
   opacity: 0;
+  cursor: pointer;
 }
 
 .card:hover .options {

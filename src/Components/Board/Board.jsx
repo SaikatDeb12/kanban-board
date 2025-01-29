@@ -7,20 +7,17 @@ import Editable from "../Editable/Editable";
 import Dropdown from "../Dropdown/Dropdown";
 
 const Board = () => {
-  const [dropdown, showdropdowm] = useState(false);
+  const [dropdown, showDropdowm] = useState(false);
   return (
     <div className="board">
       <div className="board-top">
         <p className="board-top-title">To Do</p>
         <SlOptions
           className="board-options"
-          onClick={() => showdropdowm(!dropdown)}
+          onClick={() => showDropdowm(!dropdown)}
         />
-        <Dropdown
-          className="board-dropdown"
-          onClose={() => showdropdowm(false)}
-        >
-          {dropdown ? "" : "Delete board"}
+        <Dropdown className="board-dropdown">
+          {dropdown ? "Delete board" : ""}
         </Dropdown>
       </div>
       <div className="board-card custom-scroll">
