@@ -4,10 +4,6 @@
 
 .default-edit-text:hover {
   background-color: #dbdbdb;
-  //   padding: 5px;
-}
-
-.editable-text {
 }
 
 .editable-text input {
@@ -23,6 +19,10 @@
   padding: 5px;
   border-radius: 5px;
   margin: 5px 0;
+}
+
+.submit-button:hover {
+  background-color: #0d538d;
 }
 
 .editable-footer {
