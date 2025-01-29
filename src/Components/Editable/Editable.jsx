@@ -3,7 +3,7 @@ import { IoIosClose } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import "./Editable.scss";
 
-const Editable = (props) => {
+const Editable = ({ text, placeholder }) => {
   const { register, handleSubmit } = useForm();
   const [showEdit, toggleShowEdit] = useState(false);
 
@@ -16,8 +16,9 @@ const Editable = (props) => {
       {showEdit ? (
         <form className="editable-text" onSubmit={handleSubmit(display)}>
           <input
+            autoFocus
             type="text"
-            placeholder={props.text}
+            placeholder={placeholder}
             {...register("textField")}
           />
           <div className="editable-footer">
@@ -35,7 +36,7 @@ const Editable = (props) => {
           className="default-edit-text"
           onClick={() => toggleShowEdit(!showEdit)}
         >
-          Add Text
+          {text || "Add Text"}
         </p>
       )}
     </div>

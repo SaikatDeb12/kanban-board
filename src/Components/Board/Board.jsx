@@ -18,7 +18,7 @@ const Board = () => {
         <Card />
         <Editable
           className="boards-card-add"
-          text=""
+          text="Add Text"
           placeholder="Enter card title"
         />
       </div>

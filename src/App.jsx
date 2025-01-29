@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.scss";
 import Board from "./Components/Board/Board";
 import "./Components/Board/Board.scss";
+import Editable from "./Components/Editable/Editable";
 
 function App() {
   return (
@@ -13,11 +14,9 @@ function App() {
         <div className="app-boards custom-scroll">
           <Board />
           <Board />
-          <Board />
-          <Board />
-          <Board />
-          <Board />
-          <Board />
+          <div className="app-boards-board">
+            <Editable text={"Add Board"} placeholder={"Enter the title"} />
+          </div>
         </div>
       </div>
     </div>
