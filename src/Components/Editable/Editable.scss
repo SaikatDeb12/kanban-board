@@ -2,8 +2,18 @@
   width: 100%;
 }
 
+.default-edit-text {
+  background-color: #fff;
+  box-shadow: 3px 3px 0px rgba(84, 83, 83, 0.8);
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
 .default-edit-text:hover {
   background-color: #dbdbdb;
+  transition: 100ms;
 }
 
 .editable-text input {

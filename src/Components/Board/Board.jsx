@@ -16,7 +16,11 @@ const Board = () => {
         <Card />
         <Card />
         <Card />
-        <Editable />
+        <Editable
+          className="boards-card-add"
+          text=""
+          placeholder="Enter card title"
+        />
       </div>
     </div>
   );
