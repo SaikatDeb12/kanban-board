@@ -6,13 +6,13 @@ import { GoClock } from "react-icons/go";
 import { GoChecklist } from "react-icons/go";
 import Dropdown from "../Dropdown/Dropdown";
 
-const Card = () => {
+const Card = ({ cards }) => {
   const [dropdown, showDropdown] = useState(false);
   return (
     <div className="card">
       <div className="card-top">
         <div className="card-label">
-          <Chip text="Frontend" color="green" />
+          <Chip text={cards.label?.tag} color={cards.label?.color} />
           <SlOptions
             style={dropdown && { opacity: "1" }}
             className="options"
@@ -20,11 +20,12 @@ const Card = () => {
           />
           <Dropdown>{dropdown ? "Delete Card" : ""}</Dropdown>
         </div>
-        <div className="card-title">Lorem ipsum dolor sit amet.</div>
+        <div className="card-title">{cards?.title}</div>
+        <div className="card-task">{cards?.task}</div>
         <div className="card-footer">
           <p>
             <GoClock />
-            2nd Sept
+            {cards.date}
           </p>
           <p>
             <GoChecklist />
