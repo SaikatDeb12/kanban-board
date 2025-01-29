@@ -1,0 +1,37 @@
+.editable {
+  width: 100%;
+}
+
+.default-edit-text:hover {
+  background-color: #dbdbdb;
+  //   padding: 5px;
+}
+
+.editable-text {
+}
+
+.editable-text input {
+  height: 30px;
+  width: 100%;
+}
+
+.submit-button {
+  background-color: #1379ce;
+  border: none;
+  color: white;
+  font-size: 12px;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.editable-footer {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+}
+
+.form-close {
+  height: 30px;
+  width: 30px;
+}

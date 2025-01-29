@@ -3,6 +3,7 @@ import "./Board.scss";
 import "../../App.scss";
 import { SlOptions } from "react-icons/sl";
 import Card from "../Card/Card";
+import Editable from "../Editable/Editable";
 
 const Board = () => {
   return (
@@ -15,12 +16,7 @@ const Board = () => {
         <Card />
         <Card />
         <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Editable />
       </div>
     </div>
   );
