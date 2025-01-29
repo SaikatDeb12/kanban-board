@@ -14,6 +14,7 @@ const Card = () => {
         <div className="card-label">
           <Chip text="Frontend" color="green" />
           <SlOptions
+            style={dropdown && { opacity: "1" }}
             className="options"
             onClick={() => showDropdown(!dropdown)}
           />

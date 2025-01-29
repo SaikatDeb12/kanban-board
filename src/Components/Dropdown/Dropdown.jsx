@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import "./Dropdown.scss";
 
 const Dropdown = ({ option, children }) => {
   const handleClick = () => {};
@@ -21,7 +22,7 @@ const Dropdown = ({ option, children }) => {
         right: 0,
       }}
     >
-      <p>{children}</p>
+      {children && <p>{children}</p>}
     </div>
   );
 };
