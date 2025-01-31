@@ -6,7 +6,7 @@ import Card from "../Card/Card";
 import Editable from "../Editable/Editable";
 import Dropdown from "../Dropdown/Dropdown";
 
-const Board = ({ board }) => {
+const Board = ({ board, cardValue }) => {
   const [dropdown, showDropdowm] = useState(false);
   console.log("Board, Cards", board.cards);
   return (
@@ -26,14 +26,15 @@ const Board = ({ board }) => {
       </div>
       <div className="board-card custom-scroll">
         {board?.cards?.map((item) => {
-          return <Card key={item.id} cards={item} />;
+          return <Card key={item.id} cards={item} keyi={item.id} />;
         })}
         <Editable
           className="boards-card-add"
           text="Add Text"
           placeholder="Enter card title"
           onSubmit={(value) => {
-            console.log(value);
+            cardValue(value.textField);
+            // console.log("Card value", value);
           }}
         />
       </div>

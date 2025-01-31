@@ -61,7 +61,6 @@ function App() {
   };
 
   const addBoard = (value) => {
-    console.log("title: ", value.title);
     setBoard([
       ...board,
       {
@@ -97,7 +96,13 @@ function App() {
       <div className="app-outer ">
         <div className="app-boards custom-scroll">
           {board.map((item) => {
-            return <Board key={item.id} board={item} />;
+            return (
+              <Board
+                key={item.id}
+                board={item}
+                cardValue={(value) => addCard(value, item.id)}
+              />
+            );
           })}
           <div className="app-boards-board">
             <Editable
