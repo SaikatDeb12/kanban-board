@@ -19,7 +19,7 @@ const Card = ({ cards, removeCard }) => {
             onClick={() => showDropdown(!dropdown)}
           />
           <Dropdown>
-            {dropdown ? <p onClick={() => removeCard}>Delete Card</p> : ""}
+            {dropdown ? <p onClick={removeCard}>Delete Card</p> : ""}
           </Dropdown>
         </div>
         <div className="card-title">{cards?.title}</div>

@@ -22,7 +22,7 @@ const Board = ({ board, cardValue, removeBoard, removeCard }) => {
           onClick={() => showDropdowm(!dropdown)}
         />
         <Dropdown className="board-dropdown">
-          {dropdown ? <p onClick={() => removeBoard}>Delete board</p> : ""}
+          {dropdown ? <p onClick={removeBoard}>Delete board</p> : ""}
         </Dropdown>
       </div>
       <div className="board-card custom-scroll">
