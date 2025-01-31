@@ -21,9 +21,60 @@ function App() {
           desc: "Lorem ipsum dolor sit amet",
           date: "25 Feb",
         },
+        {
+          id: Date.now() + Math.random(),
+          title: "Card 2",
+          task: "Some coding",
+          label: {
+            tag: "Backend",
+            color: "green",
+          },
+          desc: "Lorem ipsum dolor sit amet",
+          date: "25 Feb",
+        },
       ],
     },
   ]);
+
+  const addCard = (title, bid) => {
+    const card = {
+      cid: Date.now() + Math.random(),
+      title: title,
+      task: "",
+      label: [],
+      desc: "",
+      date: "",
+    };
+
+    const boardIndex = board.findIndex((item) => item.id === bid);
+    const tempBoard = [...board];
+    if (boardIndex < 0) return;
+    tempBoard[boardIndex].cards.push(card);
+    setBoard(tempBoard);
+  };
+
+  const removeCard = (bid) => {
+    const boardIndex = board.findIndex((item) => item.id === bid);
+    if (boardIndex < 0) return;
+    const tempBoard = [...board];
+    tempBoard[boardIndex].cards.splice(boardIndex, 1);
+  };
+
+  const addBoard = (value) => {
+    setBoard([
+      ...board,
+      {
+        id: Date.now() + Math.random,
+        title: value.title,
+        cards: value.cards,
+      },
+    ]);
+  };
+
+  const removeBoard = (bid) => {
+    const tempBoard = board.filter((item) => item.id !== bid);
+    setBoard(tempBoard);
+  };
 
   return (
     <div className="app">
@@ -33,10 +84,14 @@ function App() {
       <div className="app-outer ">
         <div className="app-boards custom-scroll">
           {board.map((item) => {
-            return <Board key={item.id} boards={item} />;
+            return <Board key={item.id} board={item} />;
           })}
           <div className="app-boards-board">
-            <Editable text={"Add Board"} placeholder={"Enter the title"} />
+            <Editable
+              text={"Add Board"}
+              placeholder={"Enter the title"}
+              onSubmit={(value) => addBoard(value)}
+            />
           </div>
         </div>
       </div>

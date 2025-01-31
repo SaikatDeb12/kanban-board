@@ -3,18 +3,18 @@ import { IoIosClose } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import "./Editable.scss";
 
-const Editable = ({ text, placeholder }) => {
-  const { register, handleSubmit } = useForm();
+const Editable = ({ text, placeholder, onSubmit }) => {
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      textField: "",
+    },
+  });
   const [showEdit, toggleShowEdit] = useState(false);
-
-  const display = (value) => {
-    console.log(value.textField);
-  };
 
   return (
     <div className="editable">
       {showEdit ? (
-        <form className="editable-text" onSubmit={handleSubmit(display)}>
+        <form className="editable-text" onSubmit={handleSubmit(onSubmit)}>
           <input
             className="editable-text-input"
             autoFocus
