@@ -58,13 +58,14 @@ function App() {
     if (boardIndex < 0) return;
     const tempBoard = [...board];
     tempBoard[boardIndex].cards.splice(boardIndex, 1);
+    setBoard(tempBoard);
   };
 
   const addBoard = (value) => {
     setBoard([
       ...board,
       {
-        id: Date.now() + Math.random,
+        id: Date.now() + Math.random(),
         title: "To Do",
         cards: [
           {
@@ -96,6 +97,7 @@ function App() {
       <div className="app-outer ">
         <div className="app-boards custom-scroll">
           {board.map((item) => {
+            console.log("App file: ", item.id);
             return (
               <Board
                 key={item.id}

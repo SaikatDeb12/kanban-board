@@ -6,10 +6,10 @@ import { GoClock } from "react-icons/go";
 import { GoChecklist } from "react-icons/go";
 import Dropdown from "../Dropdown/Dropdown";
 
-const Card = ({ cards, keyi }) => {
+const Card = ({ cards }) => {
   const [dropdown, showDropdown] = useState(false);
   return (
-    <div className="card" key={keyi}>
+    <div className="card">
       <div className="card-top">
         <div className="card-label">
           <Chip text={cards.label?.tag} color={cards.label?.color} />
