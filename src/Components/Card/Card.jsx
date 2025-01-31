@@ -6,7 +6,7 @@ import { GoClock } from "react-icons/go";
 import { GoChecklist } from "react-icons/go";
 import Dropdown from "../Dropdown/Dropdown";
 
-const Card = ({ cards }) => {
+const Card = ({ cards, removeCard }) => {
   const [dropdown, showDropdown] = useState(false);
   return (
     <div className="card">
@@ -18,7 +18,9 @@ const Card = ({ cards }) => {
             className="options"
             onClick={() => showDropdown(!dropdown)}
           />
-          <Dropdown>{dropdown ? "Delete Card" : ""}</Dropdown>
+          <Dropdown>
+            {dropdown ? <p onClick={() => removeCard}>Delete Card</p> : ""}
+          </Dropdown>
         </div>
         <div className="card-title">{cards?.title}</div>
         <div className="card-task">{cards?.task}</div>

@@ -13,6 +13,7 @@ const Board = ({ board, cardValue, removeBoard, removeCard }) => {
     <div className="board">
       <div className="board-top">
         <div className="board-top-title">
+          {console.log("From Board: ", board)}
           <p>{board?.title}</p>
           <p>{board?.cards?.length}</p>
         </div>
@@ -21,13 +22,19 @@ const Board = ({ board, cardValue, removeBoard, removeCard }) => {
           onClick={() => showDropdowm(!dropdown)}
         />
         <Dropdown className="board-dropdown">
-          {dropdown ? "Delete board" : ""}
+          {dropdown ? <p onClick={() => removeBoard}>Delete board</p> : ""}
         </Dropdown>
       </div>
       <div className="board-card custom-scroll">
         {board?.cards?.map((item) => {
           console.log("passing id: ", item.id);
-          return <Card key={item.id || Math.random()} cards={item} />;
+          return (
+            <Card
+              key={item.id || Math.random()}
+              cards={item}
+              removeCard={removeCard(item.id)}
+            />
+          );
         })}
         <Editable
           className="boards-card-add"

@@ -38,7 +38,7 @@ function App() {
 
   const addCard = (title, bid) => {
     const card = {
-      cid: Date.now() + Math.random(),
+      id: Date.now() + Math.random(),
       title: title,
       task: "",
       label: [],
@@ -53,11 +53,15 @@ function App() {
     setBoard(tempBoard);
   };
 
-  const removeCard = (bid) => {
+  const removeCard = (bid, cid) => {
     const boardIndex = board.findIndex((item) => item.id === bid);
     if (boardIndex < 0) return;
     const tempBoard = [...board];
-    tempBoard[boardIndex].cards.splice(boardIndex, 1);
+    const cardIndex = board[boardIndex].cards.findIndex(
+      (item) => item.id === cid
+    );
+    if (cardIndex < 0) return;
+    tempBoard[boardIndex].cards.splice(cardIndex, 1);
     setBoard(tempBoard);
   };
 
@@ -97,12 +101,14 @@ function App() {
       <div className="app-outer ">
         <div className="app-boards custom-scroll">
           {board.map((item) => {
-            console.log("App file: ", item.id);
+            console.log("From App: ", item);
             return (
               <Board
                 key={item.id}
                 board={item}
                 cardValue={(value) => addCard(value, item.id)}
+                removeBoard={() => removeBoard(item.id)}
+                removeCard={() => removeCard(item.id)}
               />
             );
           })}
