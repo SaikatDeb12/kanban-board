@@ -8,11 +8,14 @@ import Dropdown from "../Dropdown/Dropdown";
 
 const Board = ({ board }) => {
   const [dropdown, showDropdowm] = useState(false);
-
+  console.log("Board, Cards", board.cards);
   return (
     <div className="board">
       <div className="board-top">
-        <p className="board-top-title">{board?.title}</p>
+        <div className="board-top-title">
+          <p>{board?.title}</p>
+          <p>{board ? board?.cards?.length : 0}</p>
+        </div>
         <SlOptions
           className="board-options"
           onClick={() => showDropdowm(!dropdown)}

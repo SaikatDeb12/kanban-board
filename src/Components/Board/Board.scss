@@ -9,6 +9,13 @@
   justify-content: space-between;
 }
 
+.board-top-title {
+  display: flex;
+  gap: 5px;
+  color: #4b4a4a;
+  font-weight: 600;
+}
+
 .board-card {
   display: flex;
   flex-direction: column;

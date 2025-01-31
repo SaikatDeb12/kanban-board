@@ -61,12 +61,25 @@ function App() {
   };
 
   const addBoard = (value) => {
+    console.log("title: ", value.title);
     setBoard([
       ...board,
       {
         id: Date.now() + Math.random,
-        title: value.title,
-        cards: value.cards,
+        title: "To Do",
+        cards: [
+          {
+            id: Date.now() + Math.random(),
+            title: "Card 2",
+            task: "Some coding",
+            label: {
+              tag: "Backend",
+              color: "green",
+            },
+            desc: "Lorem ipsum dolor sit amet",
+            date: "25 Feb",
+          },
+        ],
       },
     ]);
   };
