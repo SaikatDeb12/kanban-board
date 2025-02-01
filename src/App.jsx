@@ -54,8 +54,6 @@ function App() {
   };
 
   const removeCard = (bid, cid) => {
-    console.log("Bid: ", bid);
-    console.log("Cid: ", cid);
     const boardIndex = board.findIndex((item) => item.id === bid);
     if (boardIndex < 0) return;
     const tempBoard = [...board];
@@ -95,6 +93,42 @@ function App() {
     setBoard(tempBoard);
   };
 
+  const [target, setTarget] = useState({
+    cid: "",
+    bid: "",
+  });
+
+  const handleDragEnter = (cid, bid) => {
+    setTarget({ cid: cid, bid: bid });
+  };
+
+  const handleDragEnd = (cid, bid) => {
+    let sCardIndex, sBoardIndex, tCardIndex, tBoardIndex;
+    sBoardIndex = board.findIndex((item) => item.id === bid);
+
+    if (sBoardIndex < 0) return;
+
+    sCardIndex = board[sBoardIndex].cards?.findIndex((item) => item.id === cid);
+    if (sCardIndex < 0) return;
+
+    tBoardIndex = board.findIndex((item) => item.id === target.bid);
+    if (tBoardIndex < 0) return;
+    tCardIndex = board[tBoardIndex].cards.findIndex(
+      (item) => item.id === target.cid
+    );
+    if (tCardIndex < 0) return;
+
+    const tempBoard = [...board];
+    const tempCard = tempBoard[sBoardIndex].cards[sCardIndex];
+
+    //delete
+    tempBoard[sBoardIndex].cards.splice(tCardIndex, 1);
+    //insert
+    tempBoard[tBoardIndex].cards.splice(tCardIndex, 0, tempCard);
+
+    setBoard(tempBoard);
+  };
+
   return (
     <div className="app">
       <div className="app-navbar">
@@ -103,7 +137,6 @@ function App() {
       <div className="app-outer ">
         <div className="app-boards custom-scroll">
           {board.map((item) => {
-            console.log("From App: ", item);
             return (
               <Board
                 key={item.id}
@@ -111,6 +144,8 @@ function App() {
                 cardValue={(value) => addCard(value, item.id)}
                 removeBoard={() => removeBoard(item.id)}
                 removeCard={(cid) => removeCard(item.id, cid)}
+                handleDragEnter={(cid, bid) => handleDragEnter(cid, bid)}
+                handleDragEnd={(cid, bid) => handleDragEnd(cid, bid)}
               />
             );
           })}

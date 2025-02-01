@@ -4,17 +4,12 @@ import { useForm } from "react-hook-form";
 import "./Editable.scss";
 
 const Editable = ({ text, placeholder, onSubmit }) => {
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       textField: "",
     },
   });
   const [showEdit, toggleShowEdit] = useState(false);
-
-  // const mySubmit = (value) => {
-  //   toggleShowEdit(!showEdit);
-  //   return (onSubmit = value);
-  // };
 
   return (
     <div className="editable">
@@ -24,6 +19,7 @@ const Editable = ({ text, placeholder, onSubmit }) => {
           onSubmit={handleSubmit((value) => {
             onSubmit(value);
             toggleShowEdit(!showEdit);
+            reset();
           })}
         >
           <input

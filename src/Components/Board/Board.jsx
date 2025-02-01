@@ -6,13 +6,19 @@ import Card from "../Card/Card";
 import Editable from "../Editable/Editable";
 import Dropdown from "../Dropdown/Dropdown";
 
-const Board = ({ board, cardValue, removeBoard, removeCard }) => {
+const Board = ({
+  board,
+  cardValue,
+  removeBoard,
+  removeCard,
+  handleDragEnter,
+  handleDragEnd,
+}) => {
   const [dropdown, showDropdowm] = useState(false);
   return (
     <div className="board">
       <div className="board-top">
         <div className="board-top-title">
-          {console.log("From Board: ", board)}
           <p>{board?.title}</p>
           <p>{board?.cards?.length}</p>
         </div>
@@ -26,12 +32,14 @@ const Board = ({ board, cardValue, removeBoard, removeCard }) => {
       </div>
       <div className="board-card custom-scroll">
         {board?.cards?.map((item) => {
-          console.log("passing id: ", item.id);
           return (
             <Card
               key={item.id || Math.random()}
               cards={item}
               removeCard={() => removeCard(item.id)}
+              boardId={board.id}
+              handleDragEnter={handleDragEnter}
+              handleDragEnd={handleDragEnd}
             />
           );
         })}
