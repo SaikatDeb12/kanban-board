@@ -103,8 +103,6 @@ function App() {
   };
 
   const handleDragEnd = (cid, bid) => {
-    console.log("Cid: ", cid);
-    console.log("Bid: ", bid);
     let sCardIndex, sBoardIndex, tCardIndex, tBoardIndex;
     sBoardIndex = board.findIndex((item) => item.id === bid);
 
@@ -120,12 +118,12 @@ function App() {
     tCardIndex = board[tBoardIndex].cards.findIndex(
       (item) => item.id === target.cid
     );
-    if (tCardIndex < 0) return;
     console.log("TargetBoard", tBoardIndex);
-    console.log("TargetCard", tCardIndex);
+    if (tCardIndex < 0) return;
 
     const tempBoard = [...board];
     const tempCard = tempBoard[sBoardIndex].cards[sCardIndex];
+    console.log("TargetCard", tCardIndex);
 
     //delete
     tempBoard[sBoardIndex].cards.splice(sCardIndex, 1);

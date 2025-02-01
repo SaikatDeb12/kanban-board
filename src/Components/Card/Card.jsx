@@ -5,6 +5,7 @@ import { SlOptions } from "react-icons/sl";
 import { GoClock } from "react-icons/go";
 import { GoChecklist } from "react-icons/go";
 import Dropdown from "../Dropdown/Dropdown";
+import CardInfo from "./CardInfo/CardInfo";
 
 const Card = ({
   cards,
@@ -21,6 +22,7 @@ const Card = ({
       onDragEnd={() => handleDragEnd(cards.id, boardId)}
       onDragEnter={() => handleDragEnter(cards.id, boardId)}
     >
+      <CardInfo />
       <div className="card-top">
         <div className="card-label">
           <Chip text={cards.label?.tag} color={cards.label?.color} />
