@@ -103,12 +103,16 @@ function App() {
   };
 
   const handleDragEnd = (cid, bid) => {
+    console.log("Cid: ", cid);
+    console.log("Bid: ", bid);
     let sCardIndex, sBoardIndex, tCardIndex, tBoardIndex;
     sBoardIndex = board.findIndex((item) => item.id === bid);
 
     if (sBoardIndex < 0) return;
+    console.log("SourceBoard", sBoardIndex);
 
     sCardIndex = board[sBoardIndex].cards?.findIndex((item) => item.id === cid);
+    console.log("SourceCard", sCardIndex);
     if (sCardIndex < 0) return;
 
     tBoardIndex = board.findIndex((item) => item.id === target.bid);
@@ -117,12 +121,14 @@ function App() {
       (item) => item.id === target.cid
     );
     if (tCardIndex < 0) return;
+    console.log("TargetBoard", tBoardIndex);
+    console.log("TargetCard", tCardIndex);
 
     const tempBoard = [...board];
     const tempCard = tempBoard[sBoardIndex].cards[sCardIndex];
 
     //delete
-    tempBoard[sBoardIndex].cards.splice(tCardIndex, 1);
+    tempBoard[sBoardIndex].cards.splice(sCardIndex, 1);
     //insert
     tempBoard[tBoardIndex].cards.splice(tCardIndex, 0, tempCard);
 
@@ -144,7 +150,10 @@ function App() {
                 cardValue={(value) => addCard(value, item.id)}
                 removeBoard={() => removeBoard(item.id)}
                 removeCard={(cid) => removeCard(item.id, cid)}
-                handleDragEnter={(cid, bid) => handleDragEnter(cid, bid)}
+                handleDragEnter={(cid, bid) => {
+                  console.log("recived Cid: ", cid);
+                  return handleDragEnter(cid, bid);
+                }}
                 handleDragEnd={(cid, bid) => handleDragEnd(cid, bid)}
               />
             );
