@@ -11,10 +11,21 @@ const Editable = ({ text, placeholder, onSubmit }) => {
   });
   const [showEdit, toggleShowEdit] = useState(false);
 
+  // const mySubmit = (value) => {
+  //   toggleShowEdit(!showEdit);
+  //   return (onSubmit = value);
+  // };
+
   return (
     <div className="editable">
       {showEdit ? (
-        <form className="editable-text" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="editable-text"
+          onSubmit={handleSubmit((value) => {
+            onSubmit(value);
+            toggleShowEdit(!showEdit);
+          })}
+        >
           <input
             className="editable-text-input"
             autoFocus
