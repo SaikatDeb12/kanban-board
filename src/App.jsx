@@ -54,6 +54,8 @@ function App() {
   };
 
   const removeCard = (bid, cid) => {
+    console.log("Bid: ", bid);
+    console.log("Cid: ", cid);
     const boardIndex = board.findIndex((item) => item.id === bid);
     if (boardIndex < 0) return;
     const tempBoard = [...board];
@@ -108,7 +110,7 @@ function App() {
                 board={item}
                 cardValue={(value) => addCard(value, item.id)}
                 removeBoard={() => removeBoard(item.id)}
-                removeCard={() => removeCard(item.id)}
+                removeCard={(cid) => removeCard(item.id, cid)}
               />
             );
           })}

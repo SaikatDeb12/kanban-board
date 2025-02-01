@@ -8,7 +8,6 @@ import Dropdown from "../Dropdown/Dropdown";
 
 const Board = ({ board, cardValue, removeBoard, removeCard }) => {
   const [dropdown, showDropdowm] = useState(false);
-  // console.log("Board, Cards", board.cards);
   return (
     <div className="board">
       <div className="board-top">
@@ -32,7 +31,7 @@ const Board = ({ board, cardValue, removeBoard, removeCard }) => {
             <Card
               key={item.id || Math.random()}
               cards={item}
-              removeCard={removeCard(item.id)}
+              removeCard={() => removeCard(item.id)}
             />
           );
         })}
