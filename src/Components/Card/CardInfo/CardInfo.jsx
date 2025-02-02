@@ -4,9 +4,7 @@ import Modal from "../../Modal/Modal";
 const CardInfo = () => {
   return (
     <div>
-      <Modal>
-        <h1>Hello</h1>
-      </Modal>
+      <Modal>Hello</Modal>
     </div>
   );
 };
