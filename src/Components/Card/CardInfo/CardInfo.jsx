@@ -1,10 +1,18 @@
 import React from "react";
 import Modal from "../../Modal/Modal";
 
-const CardInfo = () => {
+const CardInfo = ({ onClose }) => {
+  console.log(onClose);
   return (
     <div>
-      <Modal>Hello</Modal>
+      <Modal
+        onClose={() => {
+          console.log("cardInfo");
+          onClose();
+        }}
+      >
+        Hello
+      </Modal>
     </div>
   );
 };

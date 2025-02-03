@@ -5,6 +5,7 @@ import { SlOptions } from "react-icons/sl";
 import Card from "../Card/Card";
 import Editable from "../Editable/Editable";
 import Dropdown from "../Dropdown/Dropdown";
+import CardInfo from "../Card/CardInfo/CardInfo";
 
 const Board = ({
   board,
