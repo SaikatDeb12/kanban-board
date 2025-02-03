@@ -7,10 +7,16 @@ const Modal = ({ onClose, children }) => {
       className="modal"
       onClick={() => {
         onClose();
-        console.log("Hi modal");
       }}
     >
-      <p className="modal-text">{children}</p>
+      <div
+        className="modal-content"
+        onClick={(event) => {
+          event.stopPropagation();
+        }}
+      >
+        {children}
+      </div>
     </div>
   );
 };

@@ -19,6 +19,17 @@ const Card = ({
   const [showModal, setShowModal] = useState(false);
   return (
     <>
+      {showModal && (
+        <CardInfo
+          onClose={() => {
+            console.log("Card");
+            setShowModal(false);
+            setTimeout(() => {
+              console.log(showModal);
+            }, 3000);
+          }}
+        />
+      )}
       <div
         className="card"
         draggable
@@ -52,17 +63,6 @@ const Card = ({
           </div>
         </div>
       </div>
-      {showModal && (
-        <CardInfo
-          onClose={() => {
-            console.log("Card");
-            setShowModal(false);
-            setTimeout(() => {
-              console.log(showModal);
-            }, 3000);
-          }}
-        />
-      )}
     </>
   );
 };

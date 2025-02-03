@@ -9,6 +9,7 @@
   padding: 10px;
   display: flex;
   justify-content: center;
+  border: 0.8px solid black;
 }
 
 .default-edit-text:hover {
@@ -16,7 +17,7 @@
   transition: 100ms;
 }
 
-.editable-text input {
+.editable-text-input {
   height: 30px;
   width: 100%;
 }
