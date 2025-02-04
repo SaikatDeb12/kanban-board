@@ -29,3 +29,27 @@
   padding: 5px;
   width: 150px;
 }
+
+.cardInfo-lable {
+  display: flex;
+  width: 100%;
+}
+
+.tags {
+  width: 20px;
+  height: 20px;
+  list-style: none;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.tags-active {
+  width: 20px;
+  height: 20px;
+  list-style: none;
+  border-radius: 10px;
+  margin: 10px;
+  border: 2px solid yellow;
+  transform: scale(1.5);
+  transition: 200ms;
+}
