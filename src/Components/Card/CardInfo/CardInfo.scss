@@ -1,6 +1,9 @@
+.cardInfo {
+  font-size: 1.2rem;
+}
 .cardInfo-box {
   height: 80vh;
-  width: 60vw;
+  width: 50vw;
   background-color: #fff;
   gap: 30px;
 }
@@ -33,6 +36,7 @@
 .cardInfo-lable {
   display: flex;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .tags {
@@ -52,4 +56,31 @@
   border: 2px solid yellow;
   transform: scale(1.5);
   transition: 200ms;
+}
+
+.cardInfo-box-progress {
+  height: 10px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.cardInfo-box-progress-bar {
+  height: 10px;
+  width: 0%;
+  border-radius: 10px;
+  background-color: #1379ec;
+}
+
+.cardInfo-task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  margin: 10px 0;
+}
+
+.cardInfo-task div {
+  display: flex;
+  gap: 5px;
 }
