@@ -4,7 +4,8 @@ import "./CardInfo.scss";
 import { TfiText } from "react-icons/tfi";
 import { BsTextParagraph } from "react-icons/bs";
 import Editable from "../../Editable/Editable";
-
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { FaTags } from "react-icons/fa";
 const CardInfo = ({ onClose }) => {
   return (
     <Modal
@@ -19,7 +20,7 @@ const CardInfo = ({ onClose }) => {
             <p style={{ fontWeight: 600 }}>Title no 1</p>
           </div>
           <div className="cardInfo-box-body">
-            <Editable text={"hello"} placeholder={"Enter title"} />
+            <Editable text={"Add Title"} placeholder={"Enter title"} />
           </div>
 
           <div className="cardInfo-box-title">
@@ -27,8 +28,22 @@ const CardInfo = ({ onClose }) => {
             <p style={{ fontWeight: 600 }}>Description</p>
           </div>
           <div className="cardInfo-box-body">
-            <Editable text={"hello"} placeholder={"Enter title"} />
+            <Editable text={"Add Desctiption"} placeholder={"Enter title"} />
           </div>
+
+          <div className="cardInfo-box-title">
+            <FaRegCalendarAlt />
+            <p style={{ fontWeight: 600 }}>Calender</p>
+          </div>
+          <div className="cardInfo-box-body">
+            <input type="date" placeholder="" />
+          </div>
+
+          <div className="cardInfo-box-title">
+            <FaTags />
+            <p style={{ fontWeight: 600 }}>Calender</p>
+          </div>
+          <div className="cardInfo-box-body"></div>
         </div>
       </div>
     </Modal>

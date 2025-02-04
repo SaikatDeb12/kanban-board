@@ -17,4 +17,15 @@
 .cardInfo-box-body {
   width: 20%;
   margin: 10px;
+  margin-bottom: 30px;
+}
+
+.cardInfo-box-body Editable {
+  background-color: #fff;
+}
+
+.cardInfo-box-body input {
+  border: 0.5px solid black;
+  padding: 5px;
+  width: 150px;
 }

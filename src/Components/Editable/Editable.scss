@@ -10,6 +10,12 @@
   display: flex;
   justify-content: center;
   border: 0.8px solid black;
+  cursor: pointer;
+}
+
+.default-edit-text:active {
+  transition: 100;
+  box-shadow: 0 0 0;
 }
 
 .default-edit-text:hover {

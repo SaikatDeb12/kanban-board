@@ -42,7 +42,11 @@ const Editable = ({ text, placeholder, onSubmit }) => {
       ) : (
         <p
           className="default-edit-text"
-          onClick={() => toggleShowEdit(!showEdit)}
+          onClick={() => {
+            setTimeout(() => {
+              toggleShowEdit(!showEdit);
+            }, 25);
+          }}
         >
           {text || "Add Text"}
         </p>
