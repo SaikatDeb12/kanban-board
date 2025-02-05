@@ -22,12 +22,12 @@ const Card = ({
       {showModal && (
         <CardInfo
           onClose={() => {
-            console.log("Card");
             setShowModal(false);
             setTimeout(() => {
               console.log(showModal);
             }, 3000);
           }}
+          card={cards}
         />
       )}
       <div

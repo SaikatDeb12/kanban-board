@@ -9,8 +9,9 @@ import { FaTags } from "react-icons/fa";
 import { SiGoogletasks } from "react-icons/si";
 import { FaTasks } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import Chip from "../../Chip/Chip";
 
-const CardInfo = ({ onClose }) => {
+const CardInfo = ({ onClose, card }) => {
   const colors = [
     "#a8193d",
     "#4fcc25",
@@ -27,14 +28,14 @@ const CardInfo = ({ onClose }) => {
         onClose();
       }}
     >
-      <div className="cardInfo">
+      <div className="cardInfo custom-scroll">
         <div className="cardInfo-box">
           <div className="cardInfo-box-title">
             <TfiText />
-            <p style={{ fontWeight: 600 }}>Title no 1</p>
+            <p style={{ fontWeight: 600 }}>Title</p>
           </div>
           <div className="cardInfo-box-body">
-            <Editable text={"Add Title"} placeholder={"Enter title"} />
+            <Editable text={card.title} placeholder={"Enter title"} />
           </div>
 
           <div className="cardInfo-box-title">
@@ -42,7 +43,7 @@ const CardInfo = ({ onClose }) => {
             <p style={{ fontWeight: 600 }}>Description</p>
           </div>
           <div className="cardInfo-box-body">
-            <Editable text={"Add Description"} placeholder={"Enter title"} />
+            <Editable text={card.desc} placeholder={"Enter title"} />
           </div>
 
           <div className="cardInfo-box-title">
@@ -50,15 +51,18 @@ const CardInfo = ({ onClose }) => {
             <p style={{ fontWeight: 600 }}>Calender</p>
           </div>
           <div className="cardInfo-box-body">
-            <input type="date" placeholder="" />
+            <input type="date" placeholder="" defaultValue={card.date} />
           </div>
 
           <div className="cardInfo-box-title">
             <FaTags />
             <p style={{ fontWeight: 600 }}>Labels</p>
           </div>
+          <div className="cardInfo-box-labels">
+            <Chip text={card.label.tag} color={card.label.color} />
+          </div>
 
-          <div className="cardInfo-lable">
+          <div className="cardInfo-tags">
             {colors.map((item, index) => {
               return (
                 <li
