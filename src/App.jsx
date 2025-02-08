@@ -13,7 +13,7 @@ function App() {
         {
           id: Date.now() + Math.random(),
           title: "Card 1",
-          task: "Some coding",
+          task: ["Some coding", "Some debugging"],
           label: {
             tag: "Frontend",
             color: "blue",
@@ -24,7 +24,7 @@ function App() {
         {
           id: Date.now() + Math.random(),
           title: "Card 2",
-          task: "Some coding",
+          task: ["Some coding", "Some debugging"],
           label: {
             tag: "Backend",
             color: "green",

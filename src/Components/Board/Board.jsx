@@ -41,6 +41,7 @@ const Board = ({
               boardId={board.id}
               handleDragEnter={handleDragEnter}
               handleDragEnd={handleDragEnd}
+              task={item.task}
             />
           );
         })}

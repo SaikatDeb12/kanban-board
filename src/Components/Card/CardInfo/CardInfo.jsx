@@ -11,7 +11,7 @@ import { FaTasks } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Chip from "../../Chip/Chip";
 
-const CardInfo = ({ onClose, card }) => {
+const CardInfo = ({ onClose, card, task }) => {
   const colors = [
     "#a8193d",
     "#4fcc25",
@@ -21,6 +21,13 @@ const CardInfo = ({ onClose, card }) => {
     "#cf61a1",
     "#240959",
   ];
+
+  const calculatePercent = () => {
+    const completed = task?.filter((item) => item.completed)?.length;
+    if (completed == 0) return 0;
+    return (completed / task.length) * 100;
+  };
+
   const [activeColor, setActiveColor] = useState("");
   return (
     <Modal
@@ -51,7 +58,11 @@ const CardInfo = ({ onClose, card }) => {
             <p style={{ fontWeight: 600 }}>Calender</p>
           </div>
           <div className="cardInfo-box-body">
-            <input type="date" placeholder="" defaultValue={card.date} />
+            <input
+              type="date"
+              placeholder=""
+              defaultValue={new Date().toString().substring(0, 10)}
+            />
           </div>
 
           <div className="cardInfo-box-title">
@@ -82,25 +93,18 @@ const CardInfo = ({ onClose, card }) => {
           <div className="cardInfo-box-progress">
             <div
               className="cardInfo-box-progress-bar"
-              style={{ width: "25%" }}
+              style={{ width: `${calculatePercent}%` }}
             />
             <div className="cardInfo-box-list">
-              <div className="cardInfo-task">
-                <div>
-                  <input type="checkbox" />
-                  <p>Task 1</p>
+              {task.map((item, key) => (
+                <div key={key}>
+                  <>
+                    <input type="checkbox" />
+                    <p>{item}</p>
+                  </>
+                  <MdDelete style={{ fontSize: "25px" }} />
                 </div>
-                <MdDelete style={{ fontSize: "25px" }} />
-              </div>
-            </div>
-            <div className="cardInfo-box-list">
-              <div className="cardInfo-task">
-                <div>
-                  <input type="checkbox" />
-                  <p>Task 2</p>
-                </div>
-                <MdDelete style={{ fontSize: "25px" }} />
-              </div>
+              ))}
             </div>
           </div>
         </div>

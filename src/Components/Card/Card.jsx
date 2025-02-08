@@ -14,6 +14,7 @@ const Card = ({
   boardId,
   handleDragEnter,
   handleDragEnd,
+  task,
 }) => {
   const [dropdown, showDropdown] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -28,6 +29,7 @@ const Card = ({
             }, 3000);
           }}
           card={cards}
+          task={task}
         />
       )}
       <div
