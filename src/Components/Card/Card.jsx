@@ -14,6 +14,7 @@ const Card = ({
   boardId,
   handleDragEnter,
   handleDragEnd,
+  updateCard,
 }) => {
   const [dropdown, showDropdown] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -27,6 +28,8 @@ const Card = ({
             setTimeout(() => {}, 3000);
           }}
           card={cards}
+          boardId={boardId}
+          updateCard={updateCard}
         />
       )}
       <div

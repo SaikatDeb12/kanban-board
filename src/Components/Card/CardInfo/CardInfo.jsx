@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "../../Modal/Modal";
 import "./CardInfo.scss";
 import { TfiText } from "react-icons/tfi";
@@ -11,7 +11,7 @@ import { FaTasks } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Chip from "../../Chip/Chip";
 
-const CardInfo = ({ onClose, card }) => {
+const CardInfo = ({ onClose, card, boardId, updateCard }) => {
   const colors = [
     "#a8193d",
     "#4fcc25",
@@ -21,6 +21,7 @@ const CardInfo = ({ onClose, card }) => {
     "#cf61a1",
     "#240959",
   ];
+  const [activeColor, setActiveColor] = useState("");
 
   const [values, setValues] = useState({ ...card });
 
@@ -30,7 +31,10 @@ const CardInfo = ({ onClose, card }) => {
     return (completed / task.length) * 100;
   };
 
-  const [activeColor, setActiveColor] = useState("");
+  useEffect(() => {
+    if (updateCard) updateCard(values.id, boardId, values);
+  }, [values]);
+
   return (
     <Modal
       onClose={() => {
@@ -44,7 +48,11 @@ const CardInfo = ({ onClose, card }) => {
             <p style={{ fontWeight: 600 }}>Title</p>
           </div>
           <div className="cardInfo-box-body">
-            <Editable text={card.title} placeholder={"Enter title"} />
+            <Editable
+              text={card.title}
+              placeholder={"Enter title"}
+              onSubmit={(value) => setValues({ ...values, title: value })}
+            />
           </div>
 
           <div className="cardInfo-box-title">

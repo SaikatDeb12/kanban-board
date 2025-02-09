@@ -17,7 +17,7 @@ const Editable = ({ text, placeholder, onSubmit }) => {
         <form
           className="editable-text"
           onSubmit={handleSubmit((value) => {
-            onSubmit(value);
+            onSubmit(value.textField);
             toggleShowEdit(!showEdit);
             reset();
           })}

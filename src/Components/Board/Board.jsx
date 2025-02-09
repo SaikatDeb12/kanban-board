@@ -14,6 +14,7 @@ const Board = ({
   removeCard,
   handleDragEnter,
   handleDragEnd,
+  updateCard,
 }) => {
   const [dropdown, showDropdowm] = useState(false);
   return (
@@ -42,12 +43,13 @@ const Board = ({
               handleDragEnter={handleDragEnter}
               handleDragEnd={handleDragEnd}
               task={item.task}
+              updateCard={updateCard}
             />
           );
         })}
         <Editable
           className="boards-card-add"
-          text="Add Text"
+          text="+ Add Card"
           placeholder="Enter card title"
           onSubmit={(value) => {
             cardValue(value.textField);

@@ -133,6 +133,23 @@ function App() {
     setBoard(tempBoard);
   };
 
+  const updateCard = (cid, bid, card) => {
+    console.log("cid: ", cid);
+    console.log("bid: ", bid);
+    console.log("card: ", card);
+
+    const boardIndex = board.findIndex((item) => item.id == bid);
+    if (boardIndex < 0) return;
+    const cardIndex = board[boardIndex].cards.findIndex(
+      (item) => item.id === cid
+    );
+    if (cardIndex < 0) return;
+
+    const tempBoard = [...board];
+    tempBoard[boardIndex].cards[cardIndex] = card;
+    setBoard(tempBoard);
+  };
+
   return (
     <div className="app">
       <div className="app-navbar">
@@ -153,6 +170,7 @@ function App() {
                   return handleDragEnter(cid, bid);
                 }}
                 handleDragEnd={(cid, bid) => handleDragEnd(cid, bid)}
+                updateCard={updateCard}
               />
             );
           })}
