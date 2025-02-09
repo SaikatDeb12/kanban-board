@@ -41,6 +41,7 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
         onClose();
       }}
     >
+      {console.log("CardInfo_values_task: ", values)}
       <div className="cardInfo custom-scroll">
         <div className="cardInfo-box">
           <div className="cardInfo-box-title">

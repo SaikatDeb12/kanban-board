@@ -40,7 +40,7 @@ function App() {
     const card = {
       id: Date.now() + Math.random(),
       title: title,
-      task: "",
+      task: [],
       label: [],
       desc: "",
       date: "",
@@ -75,7 +75,7 @@ function App() {
           {
             id: Date.now() + Math.random(),
             title: "Card 2",
-            task: "Some coding",
+            task: ["Some coding"],
             label: {
               tag: "Backend",
               color: "green",
