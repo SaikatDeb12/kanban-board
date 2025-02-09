@@ -96,3 +96,14 @@
   display: flex;
   gap: 5px;
 }
+
+.cardInfo-box-list-content {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding-bottom: 20px;
+}
+.cardInfo-box-list-content div {
+  display: flex;
+  gap: 5px;
+}

@@ -14,22 +14,19 @@ const Card = ({
   boardId,
   handleDragEnter,
   handleDragEnd,
-  task,
 }) => {
   const [dropdown, showDropdown] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const { id, title, date, tasks, labels } = cards;
   return (
     <>
       {showModal && (
         <CardInfo
           onClose={() => {
             setShowModal(false);
-            setTimeout(() => {
-              console.log(showModal);
-            }, 3000);
+            setTimeout(() => {}, 3000);
           }}
           card={cards}
-          task={task}
         />
       )}
       <div

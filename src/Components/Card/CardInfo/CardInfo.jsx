@@ -11,7 +11,7 @@ import { FaTasks } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Chip from "../../Chip/Chip";
 
-const CardInfo = ({ onClose, card, task }) => {
+const CardInfo = ({ onClose, card }) => {
   const colors = [
     "#a8193d",
     "#4fcc25",
@@ -22,8 +22,10 @@ const CardInfo = ({ onClose, card, task }) => {
     "#240959",
   ];
 
+  const [values, setValues] = useState({ ...card });
+
   const calculatePercent = () => {
-    const completed = task?.filter((item) => item.completed)?.length;
+    const completed = values.task?.filter((item) => item.completed)?.length;
     if (completed == 0) return 0;
     return (completed / task.length) * 100;
   };
@@ -96,12 +98,12 @@ const CardInfo = ({ onClose, card, task }) => {
               style={{ width: `${calculatePercent}%` }}
             />
             <div className="cardInfo-box-list">
-              {task.map((item, key) => (
-                <div key={key}>
-                  <>
+              {values.task.map((item, key) => (
+                <div className="cardInfo-box-list-content" key={key}>
+                  <div>
                     <input type="checkbox" />
                     <p>{item}</p>
-                  </>
+                  </div>
                   <MdDelete style={{ fontSize: "25px" }} />
                 </div>
               ))}
