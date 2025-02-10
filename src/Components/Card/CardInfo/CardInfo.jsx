@@ -77,6 +77,9 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
               type="date"
               placeholder=""
               defaultValue={new Date().toString().substring(0, 10)}
+              onChange={(event) =>
+                setValues({ ...values, date: event.target.value })
+              }
             />
           </div>
 

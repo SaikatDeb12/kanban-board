@@ -41,6 +41,9 @@ const Editable = ({ text, placeholder, onSubmit }) => {
         </form>
       ) : (
         <p
+          style={{
+            background: "linear-gradient(to right, blueviolet, white)",
+          }}
           className="default-edit-text"
           onClick={() => {
             setTimeout(() => {
