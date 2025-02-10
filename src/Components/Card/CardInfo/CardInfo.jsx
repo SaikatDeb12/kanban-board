@@ -61,7 +61,11 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
             <p style={{ fontWeight: 600 }}>Description</p>
           </div>
           <div className="cardInfo-box-body">
-            <Editable text={card.desc} placeholder={"Enter title"} />
+            <Editable
+              text={card.desc}
+              placeholder={"Enter title"}
+              onSubmit={(value) => setValues({ ...values, desc: value })}
+            />
           </div>
 
           <div className="cardInfo-box-title">

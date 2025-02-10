@@ -173,7 +173,7 @@ function App() {
           })}
           <div className="app-boards-board">
             <Editable
-              text={"Add Board"}
+              text={"+ Add Board"}
               placeholder={"Enter the title"}
               onSubmit={(value) => addBoard(value)}
             />

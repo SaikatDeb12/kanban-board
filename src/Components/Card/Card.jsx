@@ -52,7 +52,7 @@ const Card = ({
             </Dropdown>
           </div>
           <div className="card-title">{cards?.title}</div>
-          <div className="card-task">{cards?.task}</div>
+          <div className="card-task">{cards?.desc}</div>
           <div className="card-footer">
             <p>
               <GoClock />
