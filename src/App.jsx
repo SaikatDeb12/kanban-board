@@ -37,6 +37,7 @@ function App() {
   ]);
 
   const addCard = (title, bid) => {
+    console.log("value in addCard: ", title);
     const card = {
       id: Date.now() + Math.random(),
       title: title,
@@ -134,10 +135,6 @@ function App() {
   };
 
   const updateCard = (cid, bid, card) => {
-    console.log("cid: ", cid);
-    console.log("bid: ", bid);
-    console.log("card: ", card);
-
     const boardIndex = board.findIndex((item) => item.id == bid);
     if (boardIndex < 0) return;
     const cardIndex = board[boardIndex].cards.findIndex(

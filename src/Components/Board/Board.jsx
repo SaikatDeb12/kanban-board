@@ -52,7 +52,8 @@ const Board = ({
           text="+ Add Card"
           placeholder="Enter card title"
           onSubmit={(value) => {
-            cardValue(value.textField);
+            console.log("addCard value in Board: ", value);
+            cardValue(value);
           }}
         />
       </div>
