@@ -44,7 +44,7 @@ function App() {
     },
   ]);
 
-  const addCard = (title, bid) => {
+  const addCard = (bid, title) => {
     console.log("value in addCard: ", title);
     const card = {
       id: Date.now() + Math.random(),
@@ -155,7 +155,7 @@ function App() {
               <Board
                 key={item.id}
                 board={item}
-                cardValue={(value) => addCard(value, item.id)}
+                cardValue={(value) => addCard(item.id, value)}
                 removeBoard={() => removeBoard(item.id)}
                 removeCard={(cid) => removeCard(item.id, cid)}
                 handleDragEnter={(cid, bid) => {

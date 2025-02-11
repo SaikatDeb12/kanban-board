@@ -29,7 +29,6 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
   });
 
   const calculatePercent = () => {
-    console.log("CardInfo tasks: ", values.task);
     if (!Array.isArray(values.task)) return 0;
     const completed = values.task.filter((item) => item.completed).length;
     return values.task.length === 0
@@ -47,12 +46,7 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
   }, [values.id, values.title, values.desc, values.date, values.task]);
 
   return (
-    <Modal
-      onClose={() => {
-        onClose();
-      }}
-    >
-      {console.log("CardInfo_values_task: ", values.task)}
+    <Modal onClose={onClose}>
       <div className="cardInfo custom-scroll">
         <div className="cardInfo-box">
           <div className="cardInfo-box-title">
@@ -61,7 +55,7 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
           </div>
           <div className="cardInfo-box-body">
             <Editable
-              text={card.title}
+              text={values.title || ""}
               placeholder={"Enter title"}
               onSubmit={(value) => setValues({ ...values, title: value })}
             />
@@ -73,15 +67,15 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
           </div>
           <div className="cardInfo-box-body">
             <Editable
-              text={card.desc}
-              placeholder={"Enter title"}
+              text={values.desc || ""}
+              placeholder={"Enter description"}
               onSubmit={(value) => setValues({ ...values, desc: value })}
             />
           </div>
 
           <div className="cardInfo-box-title">
             <FaRegCalendarAlt />
-            <p style={{ fontWeight: 600 }}>Calender</p>
+            <p style={{ fontWeight: 600 }}>Calendar</p>
           </div>
           <div className="cardInfo-box-body">
             <input
@@ -99,20 +93,21 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
             <p style={{ fontWeight: 600 }}>Labels</p>
           </div>
           <div className="cardInfo-box-labels">
-            <Chip text={card.label.tag} color={card.label.color} />
+            <Chip
+              text={values.label?.tag || ""}
+              color={values.label?.color || ""}
+            />
           </div>
 
           <div className="cardInfo-tags">
-            {colors.map((item, index) => {
-              return (
-                <li
-                  className={item === activeColor ? "tags-active" : "tags"}
-                  key={index}
-                  style={{ backgroundColor: item }}
-                  onClick={() => setActiveColor(item)}
-                ></li>
-              );
-            })}
+            {colors.map((item, index) => (
+              <li
+                className={item === activeColor ? "tags-active" : "tags"}
+                key={index}
+                style={{ backgroundColor: item }}
+                onClick={() => setActiveColor(item)}
+              ></li>
+            ))}
           </div>
 
           <div className="cardInfo-box-title">
@@ -122,7 +117,7 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
           <div className="cardInfo-box-progress">
             <div
               className="cardInfo-box-progress-bar"
-              style={{ width: `${calculatePercent}%` }}
+              style={{ width: `${calculatePercent()}%` }}
             />
             <div className="cardInfo-box-list">
               {values.task.map((item, key) => (
@@ -130,14 +125,10 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
                   <div>
                     <input
                       type="checkbox"
-                      checked={item.completed}
+                      checked={item.completed || false}
                       onChange={() => {
                         const newTasks = values.task.map((t, index) =>
-                          index === key ? (
-                            { ...t, completed: !t.completed }
-                          ) : (
-                            <p>{t}</p>
-                          )
+                          index === key ? { ...t, completed: !t.completed } : t
                         );
                         setValues({ ...values, task: newTasks });
                       }}

@@ -40,10 +40,12 @@ const Card = ({
         onClick={() => setShowModal(true)}
       >
         <div className="card-top">
-          <div className="card-label">
-            {cards.label?.map((label, index) => (
-              <Chip key={index} text={label.tag} color={label.color} />
-            ))}
+          <div className="card-info">
+            <div className="card-label">
+              {cards.label?.map((label, index) => (
+                <Chip key={index} text={label.tag} color={label.color} />
+              ))}
+            </div>
             <SlOptions
               style={dropdown && { opacity: "1" }}
               className="options"

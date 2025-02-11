@@ -18,8 +18,8 @@ const Editable = ({ text, placeholder, onSubmit }) => {
           className="editable-text"
           onSubmit={handleSubmit((value) => {
             onSubmit(value.textField);
-            toggleShowEdit(!showEdit);
             reset();
+            toggleShowEdit(false);
           })}
         >
           <input
@@ -27,7 +27,7 @@ const Editable = ({ text, placeholder, onSubmit }) => {
             autoFocus
             type="text"
             placeholder={placeholder}
-            {...register("textField")}
+            {...register("textField", { required: true })}
           />
           <div className="editable-footer">
             <button className="submit-button" type="submit">
@@ -35,7 +35,10 @@ const Editable = ({ text, placeholder, onSubmit }) => {
             </button>
             <IoIosClose
               className="form-close"
-              onClick={() => toggleShowEdit(!showEdit)}
+              onClick={() => {
+                reset();
+                toggleShowEdit(false);
+              }}
             />
           </div>
         </form>
@@ -47,7 +50,7 @@ const Editable = ({ text, placeholder, onSubmit }) => {
           className="default-edit-text"
           onClick={() => {
             setTimeout(() => {
-              toggleShowEdit(!showEdit);
+              toggleShowEdit(true);
             }, 25);
           }}
         >
