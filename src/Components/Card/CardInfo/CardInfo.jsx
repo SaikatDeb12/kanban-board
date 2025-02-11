@@ -133,7 +133,11 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
                       checked={item.completed}
                       onChange={() => {
                         const newTasks = values.task.map((t, index) =>
-                          index === key ? { ...t, completed: !t.completed } : t
+                          index === key ? (
+                            { ...t, completed: !t.completed }
+                          ) : (
+                            <p>{t}</p>
+                          )
                         );
                         setValues({ ...values, task: newTasks });
                       }}

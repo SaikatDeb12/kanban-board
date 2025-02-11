@@ -79,20 +79,8 @@ function App() {
       ...board,
       {
         id: Date.now() + Math.random(),
-        title: "To Do",
-        cards: [
-          {
-            id: Date.now() + Math.random(),
-            title: "Card 2",
-            task: ["Some coding"],
-            label: {
-              tag: "Backend",
-              color: "green",
-            },
-            desc: "Lorem ipsum dolor sit amet",
-            date: "25 Feb",
-          },
-        ],
+        title: value,
+        cards: [],
       },
     ]);
   };

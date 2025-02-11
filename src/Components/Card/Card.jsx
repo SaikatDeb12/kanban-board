@@ -41,7 +41,7 @@ const Card = ({
       >
         <div className="card-top">
           <div className="card-label">
-            {cards.labels?.map((label, index) => (
+            {cards.label?.map((label, index) => (
               <Chip key={index} text={label.tag} color={label.color} />
             ))}
             <SlOptions
