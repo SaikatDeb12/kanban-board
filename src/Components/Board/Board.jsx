@@ -28,21 +28,24 @@ const Board = ({
           className="board-options"
           onClick={() => showDropdowm(!dropdown)}
         />
-        <Dropdown className="board-dropdown">
-          {dropdown ? <p onClick={removeBoard}>Delete board</p> : ""}
-        </Dropdown>
+
+        {dropdown && (
+          <Dropdown className="board-dropdown">
+            <p onClick={removeBoard}>Delete board</p>
+          </Dropdown>
+        )}
       </div>
       <div className="board-card custom-scroll">
         {board?.cards?.map((item) => {
           return (
             <Card
-              key={item.id || Math.random()}
+              key={item.id}
               cards={item}
               removeCard={() => removeCard(item.id)}
               boardId={board.id}
               handleDragEnter={handleDragEnter}
               handleDragEnd={handleDragEnd}
-              task={item.task}
+              task={item.tasks} //changed from task to tasks
               updateCard={updateCard}
             />
           );
@@ -53,7 +56,7 @@ const Board = ({
           placeholder="Enter card title"
           onSubmit={(value) => {
             console.log("addCard value in Board: ", value);
-            cardValue(value);
+            cardValue(board.id, value);
           }}
         />
       </div>

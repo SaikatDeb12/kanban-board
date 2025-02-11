@@ -41,7 +41,9 @@ const Card = ({
       >
         <div className="card-top">
           <div className="card-label">
-            <Chip text={cards.label?.tag} color={cards.label?.color} />
+            {cards.labels?.map((label, index) => (
+              <Chip key={index} text={label.tag} color={label.color} />
+            ))}
             <SlOptions
               style={dropdown && { opacity: "1" }}
               className="options"

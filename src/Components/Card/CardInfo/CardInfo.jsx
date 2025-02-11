@@ -23,17 +23,28 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
   ];
   const [activeColor, setActiveColor] = useState("");
 
-  const [values, setValues] = useState({ ...card });
+  const [values, setValues] = useState({
+    ...card,
+    task: Array.isArray(card.task) ? card.task : [],
+  });
 
   const calculatePercent = () => {
-    const completed = values.task?.filter((item) => item.completed)?.length;
-    if (completed == 0) return 0;
-    return (completed / task.length) * 100;
+    console.log("CardInfo tasks: ", values.task);
+    if (!Array.isArray(values.task)) return 0;
+    const completed = values.task.filter((item) => item.completed).length;
+    return values.task.length === 0
+      ? 0
+      : (completed / values.task.length) * 100;
   };
 
   useEffect(() => {
-    if (updateCard) updateCard(values.id, boardId, values);
-  }, [values]);
+    if (updateCard) {
+      updateCard(values.id, boardId, {
+        ...values,
+        task: Array.isArray(values.task) ? values.task : [],
+      });
+    }
+  }, [values.id, values.title, values.desc, values.date, values.task]);
 
   return (
     <Modal
@@ -41,7 +52,7 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
         onClose();
       }}
     >
-      {console.log("CardInfo_values_task: ", values)}
+      {console.log("CardInfo_values_task: ", values.task)}
       <div className="cardInfo custom-scroll">
         <div className="cardInfo-box">
           <div className="cardInfo-box-title">
@@ -117,10 +128,26 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
               {values.task.map((item, key) => (
                 <div className="cardInfo-box-list-content" key={key}>
                   <div>
-                    <input type="checkbox" />
-                    <p>{item}</p>
+                    <input
+                      type="checkbox"
+                      checked={item.completed}
+                      onChange={() => {
+                        const newTasks = values.task.map((t, index) =>
+                          index === key ? { ...t, completed: !t.completed } : t
+                        );
+                        setValues({ ...values, task: newTasks });
+                      }}
+                    />
                   </div>
-                  <MdDelete style={{ fontSize: "25px" }} />
+                  <MdDelete
+                    style={{ fontSize: "25px", cursor: "pointer" }}
+                    onClick={() => {
+                      const newTasks = values.task.filter(
+                        (_, index) => index !== key
+                      );
+                      setValues({ ...values, task: newTasks });
+                    }}
+                  />
                 </div>
               ))}
             </div>

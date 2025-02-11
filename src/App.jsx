@@ -14,10 +14,12 @@ function App() {
           id: Date.now() + Math.random(),
           title: "Card 1",
           task: ["Some coding", "Some debugging"],
-          label: {
-            tag: "Frontend",
-            color: "blue",
-          },
+          label: [
+            {
+              tag: "Frontend",
+              color: "blue",
+            },
+          ],
           desc: "Lorem ipsum dolor sit amet",
           date: "25 Feb",
         },
@@ -25,10 +27,16 @@ function App() {
           id: Date.now() + Math.random(),
           title: "Card 2",
           task: ["Some coding", "Some debugging"],
-          label: {
-            tag: "Backend",
-            color: "green",
-          },
+          label: [
+            {
+              tag: "Backend",
+              color: "green",
+            },
+            {
+              tag: "FullStack",
+              color: "blueviolet",
+            },
+          ],
           desc: "Lorem ipsum dolor sit amet",
           date: "25 Feb",
         },
