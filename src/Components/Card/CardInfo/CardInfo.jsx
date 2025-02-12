@@ -127,12 +127,14 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
                       type="checkbox"
                       checked={item.completed || false}
                       onChange={() => {
-                        const newTasks = values.task.map((t, index) =>
-                          index === key ? { ...t, completed: !t.completed } : t
-                        );
+                        const newTasks = values.task.map((t, index) => {
+                          console.log("CardInfo tasks: ", t);
+                          index === key ? { ...t, completed: !t.completed } : t;
+                        });
                         setValues({ ...values, task: newTasks });
                       }}
                     />
+                    <div>{item}</div>
                   </div>
                   <MdDelete
                     style={{ fontSize: "25px", cursor: "pointer" }}
@@ -154,3 +156,4 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
 };
 
 export default CardInfo;
+7;
