@@ -7,7 +7,6 @@ import Editable from "../../Editable/Editable";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { FaTags } from "react-icons/fa";
 import { SiGoogletasks } from "react-icons/si";
-import { FaTasks } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Chip from "../../Chip/Chip";
 
@@ -21,16 +20,21 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
     "#cf61a1",
     "#240959",
   ];
+
   const [activeColor, setActiveColor] = useState("");
 
   const [values, setValues] = useState({
     ...card,
-    task: Array.isArray(card.task) ? card.task : [],
+    task: Array.isArray(card.task)
+      ? card.task.map((task) =>
+          typeof task === "string" ? { text: task, completed: false } : task
+        )
+      : [],
   });
 
   const calculatePercent = () => {
     if (!Array.isArray(values.task)) return 0;
-    const completed = values.task.filter((item) => item.completed).length;
+    const completed = values.task.filter((item) => item?.completed).length;
     return values.task.length === 0
       ? 0
       : (completed / values.task.length) * 100;
@@ -43,12 +47,13 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
         task: Array.isArray(values.task) ? values.task : [],
       });
     }
-  }, [values.id, values.title, values.desc, values.date, values.task]);
+  }, [values]);
 
   return (
     <Modal onClose={onClose}>
       <div className="cardInfo custom-scroll">
         <div className="cardInfo-box">
+          {/* Title */}
           <div className="cardInfo-box-title">
             <TfiText />
             <p style={{ fontWeight: 600 }}>Title</p>
@@ -56,11 +61,12 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
           <div className="cardInfo-box-body">
             <Editable
               text={values.title || ""}
-              placeholder={"Enter title"}
+              placeholder="Enter title"
               onSubmit={(value) => setValues({ ...values, title: value })}
             />
           </div>
 
+          {/* Description */}
           <div className="cardInfo-box-title">
             <BsTextParagraph />
             <p style={{ fontWeight: 600 }}>Description</p>
@@ -68,11 +74,12 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
           <div className="cardInfo-box-body">
             <Editable
               text={values.desc || ""}
-              placeholder={"Enter description"}
+              placeholder="Enter description"
               onSubmit={(value) => setValues({ ...values, desc: value })}
             />
           </div>
 
+          {/* Calendar */}
           <div className="cardInfo-box-title">
             <FaRegCalendarAlt />
             <p style={{ fontWeight: 600 }}>Calendar</p>
@@ -80,14 +87,16 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
           <div className="cardInfo-box-body">
             <input
               type="date"
-              placeholder=""
-              defaultValue={new Date().toString().substring(0, 10)}
+              defaultValue={
+                values.date || new Date().toISOString().substring(0, 10)
+              }
               onChange={(event) =>
                 setValues({ ...values, date: event.target.value })
               }
             />
           </div>
 
+          {/* Labels */}
           <div className="cardInfo-box-title">
             <FaTags />
             <p style={{ fontWeight: 600 }}>Labels</p>
@@ -99,17 +108,19 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
             />
           </div>
 
+          {/* Color Tags */}
           <div className="cardInfo-tags">
             {colors.map((item, index) => (
               <li
-                className={item === activeColor ? "tags-active" : "tags"}
                 key={index}
+                className={item === activeColor ? "tags-active" : "tags"}
                 style={{ backgroundColor: item }}
                 onClick={() => setActiveColor(item)}
               ></li>
             ))}
           </div>
 
+          {/* Tasks */}
           <div className="cardInfo-box-title">
             <SiGoogletasks />
             <p style={{ fontWeight: 600 }}>Tasks</p>
@@ -119,35 +130,39 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
               className="cardInfo-box-progress-bar"
               style={{ width: `${calculatePercent()}%` }}
             />
-            <div className="cardInfo-box-list">
-              {values.task.map((item, key) => (
-                <div className="cardInfo-box-list-content" key={key}>
-                  <div>
-                    <input
-                      type="checkbox"
-                      checked={item.completed || false}
-                      onChange={() => {
-                        const newTasks = values.task.map((t, index) => {
-                          console.log("CardInfo tasks: ", t);
-                          index === key ? { ...t, completed: !t.completed } : t;
-                        });
-                        setValues({ ...values, task: newTasks });
-                      }}
-                    />
-                    <div>{item}</div>
-                  </div>
-                  <MdDelete
-                    style={{ fontSize: "25px", cursor: "pointer" }}
-                    onClick={() => {
-                      const newTasks = values.task.filter(
-                        (_, index) => index !== key
+          </div>
+          <div className="cardInfo-box-list">
+            {values.task.map((item, key) => (
+              <div className="cardInfo-box-list-content" key={key}>
+                <div>
+                  <input
+                    type="checkbox"
+                    checked={item.completed || false}
+                    onChange={() => {
+                      const newTasks = values.task.map((t, index) =>
+                        index === key ? { ...t, completed: !t.completed } : t
                       );
                       setValues({ ...values, task: newTasks });
                     }}
                   />
+                  <p
+                    onClick={(e) => e.stopPropagation()}
+                    style={{ display: "inline", marginLeft: "8px" }}
+                  >
+                    {item.text}
+                  </p>
                 </div>
-              ))}
-            </div>
+                <MdDelete
+                  style={{ fontSize: "25px", cursor: "pointer" }}
+                  onClick={() => {
+                    const newTasks = values.task.filter(
+                      (_, index) => index !== key
+                    );
+                    setValues({ ...values, task: newTasks });
+                  }}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -156,4 +171,3 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
 };
 
 export default CardInfo;
-7;
