@@ -46,6 +46,7 @@ function App() {
 
   const addCard = (bid, title) => {
     console.log("value in addCard: ", title);
+    if (!title) return;
     const card = {
       id: Date.now() + Math.random(),
       title: title,
@@ -130,7 +131,7 @@ function App() {
     setBoard(tempBoard);
   };
 
-  const updateCard = (cid, bid, card) => {
+  const updateCard = (cid, bid, newCard) => {
     const boardIndex = board.findIndex((item) => item.id == bid);
     if (boardIndex < 0) return;
     const cardIndex = board[boardIndex].cards.findIndex(
@@ -139,7 +140,10 @@ function App() {
     if (cardIndex < 0) return;
 
     const tempBoard = [...board];
-    tempBoard[boardIndex].cards[cardIndex] = card;
+    tempBoard[boardIndex].cards[cardIndex] = {
+      ...tempBoard[boardIndex].cards[cardIndex],
+      ...updateCard,
+    };
     setBoard(tempBoard);
   };
 
@@ -151,11 +155,12 @@ function App() {
       <div className="app-outer ">
         <div className="app-boards custom-scroll">
           {board.map((item) => {
+            console.log("App item object val: ", item);
             return (
               <Board
                 key={item.id}
                 board={item}
-                cardValue={(value) => addCard(item.id, value)}
+                cardValue={(id, value) => addCard(id, value)}
                 removeBoard={() => removeBoard(item.id)}
                 removeCard={(cid) => removeCard(item.id, cid)}
                 handleDragEnter={(cid, bid) => {

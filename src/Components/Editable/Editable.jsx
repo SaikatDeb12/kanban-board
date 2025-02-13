@@ -18,6 +18,7 @@ const Editable = ({ text, placeholder, onSubmit }) => {
           className="editable-text"
           onSubmit={handleSubmit((value) => {
             onSubmit(value.textField);
+            console.log("value of textfield in editable.js: ", value.textField);
             reset();
             toggleShowEdit(false);
           })}
