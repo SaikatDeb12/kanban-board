@@ -131,6 +131,21 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
               style={{ width: `${calculatePercent()}%` }}
             />
           </div>
+          {/* add tasks */}
+          <div className="cardInfo-box-addTask">
+            <Editable
+              text={"+Add task"}
+              placeholder={"enter your task"}
+              onSubmit={(value) => {
+                if (value.trim() == "") return;
+                const newTask = { text: value, completed: false };
+                setValues((prevValues) => ({
+                  ...prevValues,
+                  task: [...prevValues.task, newTask],
+                }));
+              }}
+            />
+          </div>
           <div className="cardInfo-box-list">
             {values.task.map((item, key) => (
               <div className="cardInfo-box-list-content" key={key}>
