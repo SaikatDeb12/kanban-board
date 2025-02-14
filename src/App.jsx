@@ -142,7 +142,7 @@ function App() {
     const tempBoard = [...board];
     tempBoard[boardIndex].cards[cardIndex] = {
       ...tempBoard[boardIndex].cards[cardIndex],
-      ...updateCard,
+      ...newCard,
     };
     setBoard(tempBoard);
   };
