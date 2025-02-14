@@ -102,10 +102,9 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
             <p style={{ fontWeight: 600 }}>Labels</p>
           </div>
           <div className="cardInfo-box-labels">
-            <Chip
-              text={values.label?.tag || ""}
-              color={values.label?.color || ""}
-            />
+            {values.label.map((item, ind) => (
+              <Chip text={item.tag} color={item.color} key={ind} />
+            ))}
           </div>
 
           {/* Color Tags */}
@@ -118,6 +117,20 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
                 onClick={() => setActiveColor(item)}
               ></li>
             ))}
+          </div>
+          <div className="cardInfo-addlabel-button">
+            <Editable
+              text={"Add Label"}
+              placeholder={"enter tag name"}
+              onSubmit={(value) => {
+                if (value == "") return;
+                const newTag = { text: value, color: activeColor };
+                setValues((prevTags) => ({
+                  ...prevTags,
+                  label: [...prevTags.label, newTag],
+                }));
+              }}
+            />
           </div>
 
           {/* Tasks */}
@@ -151,6 +164,7 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
               <div className="cardInfo-box-list-content" key={key}>
                 <div>
                   <input
+                    className="cardInfo-checkbox"
                     type="checkbox"
                     checked={item.completed || false}
                     onChange={() => {
