@@ -124,7 +124,8 @@ const CardInfo = ({ onClose, card, boardId, updateCard }) => {
               placeholder={"enter tag name"}
               onSubmit={(value) => {
                 if (value == "") return;
-                const newTag = { text: value, color: activeColor };
+                const newTag = { tag: value, color: activeColor };
+                console.log("Tags: ", newTag);
                 setValues((prevTags) => ({
                   ...prevTags,
                   label: [...prevTags.label, newTag],
