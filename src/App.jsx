@@ -48,18 +48,18 @@ function App() {
     if (!title) return;
     const date = new Date();
     const month = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "April",
-      "May",
-      "Jun",
-      "July",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
+      " Jan",
+      " Feb",
+      " Mar",
+      " April",
+      " May",
+      " Jun",
+      " July",
+      " Aug",
+      " Sep",
+      " Oct",
+      " Nov",
+      " Dec",
     ];
     const card = {
       id: Date.now() + Math.random(),

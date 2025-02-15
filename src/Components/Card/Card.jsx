@@ -49,10 +49,24 @@ const Card = ({
             <SlOptions
               style={dropdown && { opacity: "1" }}
               className="options"
-              onClick={() => showDropdown(!dropdown)}
+              onClick={(e) => {
+                e.stopPropagation();
+                showDropdown(!dropdown);
+              }}
             />
             <Dropdown>
-              {dropdown ? <p onClick={removeCard}>Delete Card</p> : ""}
+              {dropdown ? (
+                <p
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    removeCard;
+                  }}
+                >
+                  Delete Card
+                </p>
+              ) : (
+                ""
+              )}
             </Dropdown>
           </div>
           <div className="card-title">{cards?.title}</div>
@@ -64,8 +78,10 @@ const Card = ({
             </div>
             <div className="card-footer-right">
               <GoChecklist />
-              {cards.task.filter((item) => item.completed).length}/
-              {cards.task.length}
+              <p>
+                {cards.task.filter((item) => item.completed).length}/
+                {cards.task.length}
+              </p>
             </div>
           </div>
         </div>
