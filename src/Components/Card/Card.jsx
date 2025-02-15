@@ -19,6 +19,7 @@ const Card = ({
   const [dropdown, showDropdown] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const { id, title, date, tasks, labels } = cards;
+
   return (
     <>
       {showModal && (
@@ -46,42 +47,42 @@ const Card = ({
                 <Chip key={index} text={label.tag} color={label.color} />
               ))}
             </div>
-            <SlOptions
-              style={dropdown && { opacity: "1" }}
-              className="options"
-              onClick={(e) => {
-                e.stopPropagation();
-                showDropdown(!dropdown);
-              }}
-            />
-            <Dropdown>
-              {dropdown ? (
-                <p
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    removeCard;
-                  }}
-                >
-                  Delete Card
-                </p>
-              ) : (
-                ""
+            <div className="options-container">
+              <SlOptions
+                className="options-icon"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  showDropdown(!dropdown);
+                }}
+              />
+              {dropdown && (
+                <Dropdown>
+                  <p
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      removeCard(cards.id);
+                      showDropdown(false);
+                    }}
+                  >
+                    Delete Card
+                  </p>
+                </Dropdown>
               )}
-            </Dropdown>
+            </div>
           </div>
           <div className="card-title">{cards?.title}</div>
           <div className="card-task">{cards?.desc}</div>
           <div className="card-footer">
             <div className="card-footer-left">
-              <GoClock />
-              {cards.date}
+              <span>
+                <GoClock />
+                {cards.date}
+              </span>
             </div>
             <div className="card-footer-right">
               <GoChecklist />
-              <p>
-                {cards.task.filter((item) => item.completed).length}/
-                {cards.task.length}
-              </p>
+              {cards.task.filter((item) => item.completed).length}/
+              {cards.task.length}
             </div>
           </div>
         </div>
@@ -89,4 +90,5 @@ const Card = ({
     </>
   );
 };
+
 export default Card;
