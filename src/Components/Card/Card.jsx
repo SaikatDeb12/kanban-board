@@ -58,14 +58,15 @@ const Card = ({
           <div className="card-title">{cards?.title}</div>
           <div className="card-task">{cards?.desc}</div>
           <div className="card-footer">
-            <p>
+            <div className="card-footer-left">
               <GoClock />
               {cards.date}
-            </p>
-            <p>
+            </div>
+            <div className="card-footer-right">
               <GoChecklist />
-              2/3
-            </p>
+              {cards.task.filter((item) => item.completed).length}/
+              {cards.task.length}
+            </div>
           </div>
         </div>
       </div>

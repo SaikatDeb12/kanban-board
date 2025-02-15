@@ -36,10 +36,16 @@
 .card-footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 5px 0;
 }
 
-.card-footer p {
+.card-footer-left {
+  display: flex;
+  align-items: center;
+}
+
+.card-footer-right {
   display: flex;
   align-items: center;
 }

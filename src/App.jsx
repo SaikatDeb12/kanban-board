@@ -45,15 +45,29 @@ function App() {
   ]);
 
   const addCard = (bid, title) => {
-    console.log("value in addCard: ", title);
     if (!title) return;
+    const date = new Date();
+    const month = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "April",
+      "May",
+      "Jun",
+      "July",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
     const card = {
       id: Date.now() + Math.random(),
       title: title,
       task: [],
       label: [],
       desc: "",
-      date: "",
+      date: date.getDate().toString() + month[date.getMonth()],
     };
 
     const boardIndex = board.findIndex((item) => item.id === bid);
